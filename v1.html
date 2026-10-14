@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/modernist-4bfb2f93-267d-47c8-8c47-4a0bbe9d518f/styles.css">
+<script src="_ds/modernist-4bfb2f93-267d-47c8-8c47-4a0bbe9d518f/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&display=swap">
+<style>
+html,body{margin:0;padding:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)}
+*{box-sizing:border-box}
+a{color:var(--color-text);text-decoration:none}
+a:hover{color:var(--color-accent)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</helmet>
+
+<div style="max-width:1500px;margin:0 auto;padding:0 clamp(16px,3vw,40px) 80px">
+
+<section style="padding:36px 0 28px;border-bottom:2px solid var(--color-divider)">
+<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:22px">
+<span style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;background:var(--color-text);color:var(--color-bg);padding:5px 8px">Mockup 01</span>
+<span style="font:400 12px/1.3 var(--font-body);color:var(--color-neutral-700)">Portfolio-Website · Architektur, Fotografie, Forschung · Platzhalter-Inhalte</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:28px">
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:8px">Ziel</div>
+<p style="margin:0;font:400 13px/1.55 var(--font-body);text-wrap:pretty">Keine Verkaufsseite, sondern ein Referenz-Archiv: Büros, Museen und Bauherrschaften sollen in 30 Sekunden Haltung und Qualität sehen — und dann schreiben.</p>
+</div>
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:8px">Struktur</div>
+<p style="margin:0;font:400 13px/1.55 var(--font-body);text-wrap:pretty">Ein durchlaufender Index als Startseite. Vier Ebenen: Arbeiten, Fotografie, Forschung &amp; Ausstellungen, Info. Jedes Projekt mit gleicher Metadaten-Zeile.</p>
+</div>
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:8px">Referenz</div>
+<p style="margin:0;font:400 13px/1.55 var(--font-body);text-wrap:pretty">camilleschneider.ch — nüchterner Schweizer Index. Übernommen: Metadaten-Logik, flache Hierarchie. Dazu: größere Typo, Schwarzweiß-Bilder, roter Akzent.</p>
+</div>
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:8px">Technik-Empfehlung</div>
+<p style="margin:0;font:400 13px/1.55 var(--font-body);text-wrap:pretty">Nicht WordPress. Erste Wahl: Kirby oder Astro + Sanity (voller Layout-Freiraum, schnell, Bilder-stark). Pragmatisch: Webflow, wenn er selbst pflegen will.</p>
+</div>
+</div>
+</section>
+
+<nav style="position:sticky;top:0;z-index:20;background:var(--color-bg);border-bottom:2px solid var(--color-divider);padding:14px 0;display:flex;align-items:center;gap:clamp(12px,3vw,40px);flex-wrap:wrap">
+<a href="#" onClick="{{ goWork }}" style="font:800 15px/1 var(--font-heading);letter-spacing:-.01em">Maurice Denechaud</a>
+<div style="display:flex;gap:clamp(10px,2vw,26px);flex-wrap:wrap;margin-left:auto;align-items:center">
+<a href="#" onClick="{{ goWork }}" style="font:500 12px/1 var(--font-body);letter-spacing:.02em">Arbeiten</a>
+<a href="#" onClick="{{ goPhoto }}" style="font:500 12px/1 var(--font-body);letter-spacing:.02em">Fotografie</a>
+<a href="#" onClick="{{ goResearch }}" style="font:500 12px/1 var(--font-body);letter-spacing:.02em">Forschung</a>
+<a href="#" onClick="{{ goInfo }}" style="font:500 12px/1 var(--font-body);letter-spacing:.02em">Info</a>
+<span style="font:500 12px/1 var(--font-body);color:var(--color-neutral-700)">DE / EN</span>
+<span style="font:600 10px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;border:2px solid var(--color-text);padding:5px 7px">{{ viewLabel }}</span>
+</div>
+</nav>
+
+<sc-if value="{{ isWork }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="position:relative;margin-top:24px;aspect-ratio:16/6.4;min-height:260px;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400);display:flex;align-items:flex-end;padding:clamp(16px,2.5vw,32px)">
+<div style="background:var(--color-bg);padding:14px 18px;max-width:640px">
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:8px">Aktuell · Tokyo</div>
+<div style="font:800 clamp(22px,2.6vw,40px)/1.02 var(--font-heading);letter-spacing:-.02em">Zwei Monate im Studio —<br>Feldarbeit zur Dissertation</div>
+</div>
+</div>
+<div style="font:400 11px/1 var(--font-body);color:var(--color-neutral-700);padding:8px 0 0">Platzhalter 2400 × 960 px · Schwarzweiß, volle Breite</div>
+
+<div style="overflow:hidden;border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider);margin-top:28px;padding:10px 0">
+<div style="display:flex;width:200%;animation:tick 26s linear infinite;font:800 clamp(16px,2vw,26px)/1 var(--font-heading);letter-spacing:-.01em;white-space:nowrap">
+<span style="padding-right:24px">Architektur · Fotografie · Forschung · Ausstellung · Architektur · Fotografie · Forschung · Ausstellung ·&nbsp;</span>
+<span style="padding-right:24px">Architektur · Fotografie · Forschung · Ausstellung · Architektur · Fotografie · Forschung · Ausstellung ·&nbsp;</span>
+</div>
+</div>
+
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:48px 0 20px">
+<h1 style="margin:0;font:800 clamp(36px,7vw,92px)/.92 var(--font-heading);letter-spacing:-.035em">Arbeiten<br>2017 — 2026</h1>
+<p style="margin:0;max-width:380px;font:400 13px/1.6 var(--font-body);color:var(--color-neutral-800);text-wrap:pretty">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Entwurf, Wettbewerb, Ausstellungsbau und Bauleitung — 14 Einträge, chronologisch.</p>
+</div>
+
+<sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+<div>
+<div onClick="{{ openProject }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2.5vw,36px);padding:26px 0;border-top:2px solid var(--color-divider);cursor:pointer" style-hover="background:var(--color-accent-100)">
+<div>
+<div style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px">
+<span style="font:600 11px/1 var(--font-body);color:var(--color-accent-700)">01</span>
+<span style="font:600 10px/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--color-divider);padding:4px 6px">Ausstellung</span>
+</div>
+<h2 style="margin:0 0 14px;font:800 clamp(24px,2.6vw,40px)/1.0 var(--font-heading);letter-spacing:-.025em">Künstlerische Leitung — Museumsschau (MUS)</h2>
+<sc-if value="{{ showMeta }}" hint-placeholder-val="{{ true }}">
+<dl style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px 18px;margin:0;font:400 12px/1.4 var(--font-body)">
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Zeitrahmen</dt><dd style="margin:0">2025/2026</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Ort</dt><dd style="margin:0">Lorem, DE</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Rolle</dt><dd style="margin:0">Künstlerische Leitung, Detail, Aufbau</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Status</dt><dd style="margin:0">realisiert</dd></div>
+</dl>
+</sc-if>
+</div>
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start">
+<div style="aspect-ratio:4/3;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="display:grid;gap:10px">
+<div style="aspect-ratio:4/3;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:4/3;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+</div>
+</div>
+</div>
+
+<div onClick="{{ openProject }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2.5vw,36px);padding:26px 0;border-top:2px solid var(--color-divider);cursor:pointer" style-hover="background:var(--color-accent-100)">
+<div>
+<div style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px">
+<span style="font:600 11px/1 var(--font-body);color:var(--color-accent-700)">02</span>
+<span style="font:600 10px/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--color-divider);padding:4px 6px">Eigene Ausstellung</span>
+</div>
+<h2 style="margin:0 0 14px;font:800 clamp(24px,2.6vw,40px)/1.0 var(--font-heading);letter-spacing:-.025em">Architekturgalerie Kaiserslautern (AGK)</h2>
+<sc-if value="{{ showMeta }}" hint-placeholder-val="{{ true }}">
+<dl style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px 18px;margin:0;font:400 12px/1.4 var(--font-body)">
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Zeitrahmen</dt><dd style="margin:0">2024/2024</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Ort</dt><dd style="margin:0">Kaiserslautern</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Rolle</dt><dd style="margin:0">Konzept, Ausstellungsbau, Fotografie</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Status</dt><dd style="margin:0">gezeigt</dd></div>
+</dl>
+</sc-if>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start">
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+</div>
+</div>
+
+<div onClick="{{ openProject }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2.5vw,36px);padding:26px 0;border-top:2px solid var(--color-divider);cursor:pointer" style-hover="background:var(--color-accent-100)">
+<div>
+<div style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px">
+<span style="font:600 11px/1 var(--font-body);color:var(--color-accent-700)">03</span>
+<span style="font:600 10px/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--color-divider);padding:4px 6px">Wettbewerb</span>
+</div>
+<h2 style="margin:0 0 14px;font:800 clamp(24px,2.6vw,40px)/1.0 var(--font-heading);letter-spacing:-.025em">Gemeinschaftshaus im Hof (GHH)</h2>
+<sc-if value="{{ showMeta }}" hint-placeholder-val="{{ true }}">
+<dl style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px 18px;margin:0;font:400 12px/1.4 var(--font-body)">
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Zeitrahmen</dt><dd style="margin:0">2023/2024</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Bauherrschaft</dt><dd style="margin:0">Lorem Ipsum eG</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Nutzung</dt><dd style="margin:0">Wohnen, Gemeinschaft</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Status</dt><dd style="margin:0">2. Preis</dd></div>
+</dl>
+</sc-if>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:start">
+<div style="aspect-ratio:1;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:1;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:1;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+</div>
+</div>
+
+<div onClick="{{ openProject }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2.5vw,36px);padding:26px 0;border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider);cursor:pointer" style-hover="background:var(--color-accent-100)">
+<div>
+<div style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px">
+<span style="font:600 11px/1 var(--font-body);color:var(--color-accent-700)">04</span>
+<span style="font:600 10px/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--color-divider);padding:4px 6px">Umbau</span>
+</div>
+<h2 style="margin:0 0 14px;font:800 clamp(24px,2.6vw,40px)/1.0 var(--font-heading);letter-spacing:-.025em">Aufstockung Werkstatt (WST)</h2>
+<sc-if value="{{ showMeta }}" hint-placeholder-val="{{ true }}">
+<dl style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px 18px;margin:0;font:400 12px/1.4 var(--font-body)">
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Zeitrahmen</dt><dd style="margin:0">2022/2023</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Bauherrschaft</dt><dd style="margin:0">privat</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Nutzung</dt><dd style="margin:0">Atelier</dd></div>
+<div><dt style="color:var(--color-neutral-700);margin-bottom:3px">Status</dt><dd style="margin:0">ausgeführt</dd></div>
+</dl>
+</sc-if>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start">
+<div style="aspect-ratio:4/3;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:4/3;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+</div>
+</div>
+<div style="font:400 11px/1.4 var(--font-body);color:var(--color-neutral-700);padding:12px 0">Klick auf eine Zeile öffnet die Projektseite. Weitere 10 Einträge folgen im gleichen Raster.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isGrid }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:clamp(14px,2vw,28px);border-top:2px solid var(--color-divider);padding-top:24px">
+<sc-for list="{{ gridProjects }}" as="p" hint-placeholder-count="6">
+<div onClick="{{ openProject }}" style="cursor:pointer" style-hover="color:var(--color-accent)">
+<div style="aspect-ratio:4/5;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400);margin-bottom:10px"></div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:6px">{{ p.kind }}</div>
+<div style="font:800 17px/1.1 var(--font-heading);letter-spacing:-.015em">{{ p.title }}</div>
+<div style="font:400 12px/1.4 var(--font-body);color:var(--color-neutral-700);margin-top:4px">{{ p.year }}</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProject }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:40px 0 22px;border-bottom:2px solid var(--color-divider)">
+<a href="#" onClick="{{ goWork }}" style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700)">← Index</a>
+<h1 style="margin:16px 0 0;font:800 clamp(32px,5.5vw,76px)/1.0 var(--font-heading);letter-spacing:-.035em">Künstlerische Leitung<br>Museumsschau (MUS)</h1>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px;padding:18px 0;border-bottom:2px solid var(--color-divider);font:400 12px/1.45 var(--font-body)">
+<div><div style="color:var(--color-neutral-700);margin-bottom:4px">Zeitrahmen</div>2025/2026</div>
+<div><div style="color:var(--color-neutral-700);margin-bottom:4px">Ort</div>Lorem, DE</div>
+<div><div style="color:var(--color-neutral-700);margin-bottom:4px">Auftraggeber</div>Museum Ipsum</div>
+<div><div style="color:var(--color-neutral-700);margin-bottom:4px">Rolle</div>Künstlerische Leitung</div>
+<div><div style="color:var(--color-neutral-700);margin-bottom:4px">Beteiligte</div>Museum, Künstlerin, Werkstatt, Grafik</div>
+</div>
+<div style="margin-top:24px;aspect-ratio:16/9;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3vw,48px);padding:32px 0">
+<p style="margin:0;font:400 14px/1.6 var(--font-body);text-wrap:pretty">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Korrespondenz zwischen Museum, Künstlerin und Werkstatt; Detailentwicklung und Aufbau vor Ort.</p>
+<p style="margin:0;font:400 14px/1.6 var(--font-body);text-wrap:pretty">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Platzhaltertext für die Projektbeschreibung, zwei bis vier Absätze.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+</div>
+<div style="font:400 11px/1.4 var(--font-body);color:var(--color-neutral-700);padding:8px 0 0">Bildlegende: Platzhalter · Aufbau, Detail, Werkstatt, Eröffnung</div>
+<div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:40px;padding-top:20px;border-top:2px solid var(--color-divider)">
+<a href="#" onClick="{{ goWork }}" style="font:800 clamp(18px,2vw,28px)/1 var(--font-heading);letter-spacing:-.02em">← Alle Arbeiten</a>
+<a href="#" onClick="{{ openProject }}" style="font:800 clamp(18px,2vw,28px)/1 var(--font-heading);letter-spacing:-.02em">Nächstes Projekt →</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPhoto }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:44px 0 20px;border-bottom:2px solid var(--color-divider)">
+<h1 style="margin:0;font:800 clamp(36px,7vw,92px)/.92 var(--font-heading);letter-spacing:-.035em">Fotografie</h1>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font:500 12px/1 var(--font-body)">
+<span style="border-bottom:2px solid var(--color-accent);padding-bottom:4px">Alle</span>
+<span style="color:var(--color-neutral-700)">Architektur</span>
+<span style="color:var(--color-neutral-700)">Stadt</span>
+<span style="color:var(--color-neutral-700)">Tokyo 2026</span>
+<span style="color:var(--color-neutral-700)">Auftrag</span>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:clamp(10px,1.4vw,18px);padding-top:22px">
+<div style="grid-column:span 2;aspect-ratio:3/2;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:1;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="grid-column:span 2;aspect-ratio:2/1;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:1;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:1;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+<div style="aspect-ratio:3/2;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+</div>
+<div style="font:400 11px/1.4 var(--font-body);color:var(--color-neutral-700);padding:12px 0 0">Platzhalter · Klick öffnet Lightbox mit Serie und Bildlegende. Auch als Auftragsarbeit anfragbar.</div>
+<div style="margin-top:44px;padding:clamp(20px,3vw,40px);background:var(--color-accent);color:#fff;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;align-items:end">
+<div style="font:800 clamp(24px,3.4vw,48px)/1 var(--font-heading);letter-spacing:-.03em">Architektur-<br>fotografie im<br>Auftrag</div>
+<div>
+<p style="margin:0 0 16px;font:400 13px/1.6 var(--font-body);text-wrap:pretty">Lorem ipsum dolor sit amet. Dokumentation für Büros, Bauherrschaften und Publikationen — Halbtag, Tag, Serie.</p>
+<a href="#" onClick="{{ goInfo }}" class="btn btn-secondary" style="background:#fff;border-color:#fff;color:var(--color-accent-700);letter-spacing:.06em;text-transform:uppercase">Anfrage senden</a>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isResearch }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:44px 0 20px;border-bottom:2px solid var(--color-divider)">
+<h1 style="margin:0;font:800 clamp(34px,6vw,84px)/.94 var(--font-heading);letter-spacing:-.035em">Forschung &amp;<br>Ausstellungen</h1>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3vw,48px);padding:28px 0;border-bottom:2px solid var(--color-divider)">
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Dissertation, laufend</div>
+<h2 style="margin:0 0 12px;font:800 clamp(20px,2.2vw,32px)/1.08 var(--font-heading);letter-spacing:-.02em">Arbeitstitel: Lorem ipsum dolor sit amet consectetur</h2>
+<p style="margin:0;font:400 14px/1.6 var(--font-body);text-wrap:pretty">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Betreuung, Institut, Zeitraum als Platzhalter.</p>
+</div>
+<div style="aspect-ratio:4/3;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+</div>
+<div style="padding:26px 0">
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:14px">Chronologie</div>
+<sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
+<div style="display:grid;grid-template-columns:90px minmax(0,1fr) 170px;gap:16px;padding:14px 0;border-top:1px solid var(--color-divider);font:400 13px/1.45 var(--font-body)">
+<div style="font-weight:600">{{ t.year }}</div>
+<div>{{ t.what }}</div>
+<div style="color:var(--color-neutral-700)">{{ t.where }}</div>
+</div>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(16px,2vw,28px);padding-top:20px;border-top:2px solid var(--color-divider)">
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:10px">Publikationen</div>
+<p style="margin:0 0 8px;font:400 13px/1.5 var(--font-body)">Lorem ipsum, in: Ipsum Journal 12, 2026, S. 44–59.</p>
+<p style="margin:0 0 8px;font:400 13px/1.5 var(--font-body)">Dolor sit amet (Hrsg.), Consectetur, Verlag Placeholder, 2025.</p>
+<p style="margin:0;font:400 13px/1.5 var(--font-body)">Adipiscing elit, Konferenzbeitrag, Tokyo, 2026.</p>
+</div>
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:10px">Lehre</div>
+<p style="margin:0 0 8px;font:400 13px/1.5 var(--font-body)">Entwurfsseminar, Lorem Universität, WS 2025/26</p>
+<p style="margin:0;font:400 13px/1.5 var(--font-body)">Tutorium Baukonstruktion, 2023–2024</p>
+</div>
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:10px">Vorträge</div>
+<p style="margin:0 0 8px;font:400 13px/1.5 var(--font-body)">Architekturgalerie Kaiserslautern, 2024</p>
+<p style="margin:0;font:400 13px/1.5 var(--font-body)">Studio Ipsum, Tokyo, 2026</p>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isInfo }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,64px);padding:48px 0 32px">
+<div>
+<h1 style="margin:0 0 20px;font:800 clamp(30px,4.4vw,60px)/.98 var(--font-heading);letter-spacing:-.03em">Architekt, Fotograf, Doktorand</h1>
+<p style="margin:0 0 14px;font:400 14px/1.65 var(--font-body);text-wrap:pretty">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bachelor und Master in Architektur, derzeit Promotion. Entwurf, Ausstellungsbau, künstlerische Leitung, Architekturfotografie.</p>
+<p style="margin:0;font:400 14px/1.65 var(--font-body);text-wrap:pretty">Sed do eiusmod tempor incididunt ut labore. Anfragen zu Projekten, Fotografie-Aufträgen, Lehre und Vorträgen jederzeit willkommen.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+<a href="#" class="btn btn-primary" style="letter-spacing:.06em;text-transform:uppercase">mail@platzhalter.de</a>
+<a href="#" class="btn btn-secondary" style="letter-spacing:.06em;text-transform:uppercase">Instagram</a>
+<a href="#" class="btn btn-secondary" style="letter-spacing:.06em;text-transform:uppercase">CV, PDF</a>
+</div>
+</div>
+<div style="aspect-ratio:3/4;background:var(--color-neutral-200);background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px)),linear-gradient(to bottom left,transparent calc(50% - 1px),var(--color-neutral-400) 50%,transparent calc(50% + 1px));border:1px solid var(--color-neutral-400)"></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(16px,2vw,32px);padding:24px 0;border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider)">
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:10px">Leistungen</div>
+<p style="margin:0;font:400 13px/1.6 var(--font-body)">Entwurf &amp; Wettbewerb<br>Ausstellungsgestaltung<br>Künstlerische Leitung<br>Architekturfotografie<br>Bauleitung, kleine Projekte</p>
+</div>
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:10px">Ausbildung</div>
+<p style="margin:0;font:400 13px/1.6 var(--font-body)">Promotion Architektur, seit 2024<br>M.Sc. Architektur, 2023<br>B.Sc. Architektur, 2020</p>
+</div>
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:10px">Kontakt</div>
+<p style="margin:0;font:400 13px/1.6 var(--font-body)">Platzhalterstraße 1<br>00000 Stadt<br>+49 000 000 00 00<br>mail@platzhalter.de</p>
+</div>
+<div>
+<div style="font:600 10px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:10px">Aktuell</div>
+<p style="margin:0;font:400 13px/1.6 var(--font-body)">Gastaufenthalt Studio Ipsum, Tokyo<br>Feb–Apr 2026</p>
+</div>
+</div>
+</div>
+</sc-if>
+
+<footer style="margin-top:56px;padding-top:18px;border-top:2px solid var(--color-divider);display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between;font:400 11px/1.4 var(--font-body);color:var(--color-neutral-700)">
+<span>Maurice Denechaud · Mockup, alle Inhalte Platzhalter</span>
+<span>Impressum · Datenschutz · DE / EN</span>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;indexLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Liste&quot;,&quot;Raster&quot;],&quot;default&quot;:&quot;Liste&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Index&quot;},&quot;showMeta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Index&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ec3013&quot;,&quot;options&quot;:[&quot;#ec3013&quot;,&quot;#201e1d&quot;,&quot;#ae1800&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Stil&quot;}}">
+class Component extends DCLogic {
+  state = { view: "work" };
+  componentDidMount() { this.applyAccent(); }
+  componentDidUpdate() { this.applyAccent(); }
+  applyAccent() {
+    const a = this.props.accent;
+    if (a) document.documentElement.style.setProperty("--color-accent", a);
+  }
+  go(view) {
+    return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ view }); window.scrollTo(0, 0); };
+  }
+  renderVals() {
+    const v = this.state.view;
+    const layout = this.props.indexLayout ?? "Liste";
+    const labels = { work: "Index", project: "Projekt", photo: "Fotografie", research: "Forschung", info: "Info" };
+    return {
+      isWork: v === "work", isProject: v === "project", isPhoto: v === "photo",
+      isResearch: v === "research", isInfo: v === "info",
+      isList: v === "work" && layout === "Liste",
+      isGrid: v === "work" && layout === "Raster",
+      viewLabel: labels[v],
+      showMeta: this.props.showMeta ?? true,
+      goWork: this.go("work"), goPhoto: this.go("photo"),
+      goResearch: this.go("research"), goInfo: this.go("info"),
+      openProject: this.go("project"),
+      gridProjects: [
+        { kind: "Ausstellung", title: "Museumsschau (MUS)", year: "2025/2026" },
+        { kind: "Eigene Ausstellung", title: "Architekturgalerie (AGK)", year: "2024" },
+        { kind: "Wettbewerb", title: "Gemeinschaftshaus (GHH)", year: "2023/2024" },
+        { kind: "Umbau", title: "Aufstockung Werkstatt (WST)", year: "2022/2023" },
+        { kind: "Studie", title: "Lorem Ipsum Pavillon (LIP)", year: "2022" },
+        { kind: "Fotoserie", title: "Stadt in Schichten (SIS)", year: "2021" }
+      ],
+      timeline: [
+        { year: "2026", what: "Gastaufenthalt und Feldarbeit, Studio Ipsum", where: "Tokyo" },
+        { year: "2025", what: "Künstlerische Leitung Museumsschau", where: "Lorem, DE" },
+        { year: "2024", what: "Eigene Ausstellung, Architekturgalerie", where: "Kaiserslautern" },
+        { year: "2024", what: "Beginn Promotion Architektur", where: "Lorem Universität" },
+        { year: "2023", what: "Master of Science Architektur", where: "Lorem Universität" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

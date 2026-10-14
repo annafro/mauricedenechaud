@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Diplom Party",
+    "year": "2026",
+    "category": "Unzugeordnet",
+    "image": "/media/diplomparty-3-0.jpg",
+    "description": "",
+    "published": true
+  },
+  {
+    "title": "Froggy Proggy 2.1",
+    "year": "2026",
+    "category": "Unzugeordnet",
+    "image": "/media/froggy-proggy-2-1.jpg",
+    "description": "",
+    "published": true
+  },
+  {
+    "title": "Sonic Vision",
+    "year": "2025",
+    "category": "Unzugeordnet",
+    "image": "/media/sonic-waves-poster.jpg",
+    "description": "",
+    "published": true
+  },
+  {
+    "title": "ANIKAY@GOTEC, Back to the Roots",
+    "year": "2026",
+    "category": "Unzugeordnet",
+    "image": "/media/anikay-gotec-v4.jpg",
+    "description": "",
+    "published": true
+  },
+  {
+    "title": "ATG Zines Showcase and film screening",
+    "year": "2026",
+    "category": "Unzugeordnet",
+    "image": "/media/zine-showcase.jpg",
+    "description": "",
+    "published": true
+  },
+  {
+    "title": "Lesewerkstatt, Slow Reading",
+    "year": "",
+    "category": "Unzugeordnet",
+    "image": "/media/slow-reading-2.jpg",
+    "description": "",
+    "published": true
+  },
+  {
+    "title": "Raumfiguren, Gestaltfragmente (Einladung)",
+    "year": "2026",
+    "category": "Unzugeordnet",
+    "image": "/media/poster-final.jpg",
+    "description": "",
+    "published": true
+  },
+  {
+    "title": "ATG Forschungswerkstatt",
+    "year": "",
+    "category": "Unzugeordnet",
+    "image": "/media/atg-forschungswerkstatt.jpg",
+    "description": "",
+    "published": true
+  }
+]
