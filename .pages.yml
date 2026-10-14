@@ -1,0 +1,76 @@
+media:
+  input: media
+  output: /media
+  rename: safe
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: site
+    label: Allgemeine Angaben
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: name
+        label: Name
+        type: string
+      - name: tagline
+        label: Untertitel
+        type: string
+      - name: intro
+        label: Einleitungstext Startseite
+        type: text
+      - name: ticker
+        label: Laufband-Text
+        type: string
+      - name: email
+        label: E-Mail
+        type: string
+      - name: instagram
+        label: Instagram-Link
+        type: string
+
+  - name: works
+    label: Arbeiten
+    type: file
+    path: content/works.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: year
+        label: Jahr
+        type: string
+      - name: category
+        label: Kategorie
+        type: select
+        options:
+          values: [Unzugeordnet, Architektur, Fotografie, Forschung & Ausstellungen, Grafik]
+      - name: image
+        label: Bild
+        type: image
+      - name: description
+        label: Beschreibung
+        type: text
+      - name: published
+        label: Auf der Website anzeigen
+        type: boolean
+
+  - name: timeline
+    label: Chronologie
+    type: file
+    path: content/timeline.json
+    format: json
+    list: true
+    fields:
+      - name: year
+        label: Jahr
+        type: string
+      - name: what
+        label: Was
+        type: string
+      - name: where
+        label: Wo
+        type: string
